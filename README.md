@@ -1,6 +1,5 @@
 K2 Links for JCE
 =========
-***
 
 This JCE 2.x compatible extension allows you to quickly link your any part of your content to K2 categories, items, tags and users, directly from within the WYSIWYG editor window. Once installed, whenever you create a new link using JCE's link options, you'll see available link actions specifically for K2 content.
 
@@ -38,7 +37,6 @@ If you want to provide feedback for this JCE extension, you may use the GitHub i
 - Add a language translation file
 
 
-***
 ## DOWNLOAD
 You can grab the latest release here: http://goo.gl/IBwsOz (v2.0.1)
 
