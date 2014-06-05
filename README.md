@@ -16,6 +16,7 @@ This is a backend extension so a public demo or showcase is currently not availa
 This is a JCE extension and the only basic requirements to use it are:
 - JCE v2.x installed
 - K2 v2.5.x or newer installed
+- Joomla 1.5, 2.5 or 3.x installed (depends on which Joomla release is supported by JCE at the time)
 
 It should work on all Joomla releases from version 1.5 to 3.x.
 
