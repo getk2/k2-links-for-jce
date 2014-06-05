@@ -3,7 +3,7 @@
  * @version     2.0.1
  * @package     K2 Links for JCE
  * @author      JoomlaWorks http://www.joomlaworks.net
- * @copyright   Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
+ * @copyright   Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
  * @license     GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 

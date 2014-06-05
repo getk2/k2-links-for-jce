@@ -2,11 +2,11 @@
 <install version="2.0" type="extension" extension="k2links" folder="links" method="upgrade" core="0">
 	<name>K2 Links for JCE</name>
 	<version>2.0.1</version>
-	<creationDate>18th June, 2013</creationDate>
+	<creationDate>June 5th, 2014</creationDate>
 	<author>JoomlaWorks</author>
 	<authorEmail>contact@joomlaworks.net</authorEmail>
 	<authorUrl>www.joomlaworks.net</authorUrl>
-	<copyright>Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.</copyright>
+	<copyright>Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<description>K2 Links for JCE 2.0.1</description>
 	<files>
