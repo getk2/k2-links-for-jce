@@ -14,6 +14,7 @@ This is a backend extension so a public demo or showcase is currently not availa
 
 ### REQUIREMENTS
 This is a JCE extension and the only basic requirements to use it are:
+
 - JCE v2.x installed
 - K2 v2.5.x or newer installed
 - Joomla 1.5, 2.5 or 3.x installed (depends on which Joomla release is supported by JCE at the time)
@@ -27,6 +28,7 @@ This is a Joomla! extension developed by JoomlaWorks and released under the GNU/
 
 ### ADDITIONAL INFO
 Some helpful links:
+
 - JCE - http://www.joomlacontenteditor.net
 - K2 - http://getk2.org
 - Joomla - http://www.joomla.org
