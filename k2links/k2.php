@@ -69,48 +69,78 @@ class K2linksK2 extends JObject
 		return $list;
 	}
 
-	function _getK2Categories($parent_id = 0)
+	public static function _getK2Categories($parent_id = 0)
 	{
-		$db = JFactory::getDBO();
-
-		$query = 'SELECT id, name, alias FROM #__k2_categories WHERE published = 1';
-
-		$user = JFactory::getUser();
-		if (version_compare(JVERSION, '1.6.0', 'ge'))
+		// K2 2.x
+		if (defined('K2_JVERSION'))
 		{
-			$query .= ' AND `access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+			$db = JFactory::getDBO();
+			$query = 'SELECT id, name, alias FROM #__k2_categories WHERE published = 1';
+			$user = JFactory::getUser();
+			if (version_compare(JVERSION, '1.6.0', 'ge'))
+			{
+				$query .= ' AND `access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+			}
+			else
+			{
+				$query .= "\nAND `access` <=".(int)$user->get('aid');
+			}
+			$query .= ' AND parent = '.$db->Quote($parent_id).' ORDER BY ordering ASC';
+			$db->setQuery($query);
+			$rows = $db->loadObjectList();
 		}
+		// K2 3.x
 		else
 		{
-			$query .= "\nAND `access` <=".(int)$user->get('aid');
+			if ($parent_id == 0)
+			{
+				$parent_id = 1;
+			}
+			$model = K2Model::getInstance('Categories');
+			$model->setState('site', true);
+			$model->setState('parent', $parent_id);
+			$model->setState('sorting', 'ordering');
+			$rows = $model->getRows();
 		}
 
-		$query .= ' AND parent = '.$db->Quote($parent_id).' ORDER BY ordering ASC';
-
-		$db->setQuery($query);
-		return $db->loadObjectList();
+		return $rows;
 	}
 
-	function _getK2Items($category_id = 0)
+	public static function _getK2Items($category_id = 0)
 	{
-		$db = JFactory::getDBO();
-
-		$query = 'SELECT id, title, alias FROM #__k2_items WHERE published = 1';
-
-		$user = JFactory::getUser();
-		if (version_compare(JVERSION, '1.6.0', 'ge'))
+		// K2 2.x
+		if (defined('K2_JVERSION'))
 		{
-			$query .= ' AND `access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+			$db = JFactory::getDBO();
+
+			$query = 'SELECT id, title, alias FROM #__k2_items WHERE published = 1';
+
+			$user = JFactory::getUser();
+			if (version_compare(JVERSION, '1.6.0', 'ge'))
+			{
+				$query .= ' AND `access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+			}
+			else
+			{
+				$query .= "\nAND `access` <=".(int)$user->get('aid');
+			}
+
+			$query .= ' AND catid = '.$db->Quote($category_id).' ORDER BY ordering ASC';
+
+			$db->setQuery($query);
+			$rows = $db->loadObjectList();
 		}
+		// K2 3.x
 		else
 		{
-			$query .= "\nAND `access` <=".(int)$user->get('aid');
+			$model = K2Model::getInstance('Items');
+			$model->setState('site', true);
+			$model->setState('category', (int)$category_id);
+			$model->setState('recursive', false);
+			$model->setState('sorting', 'ordering');
+			$rows = $model->getRows();
 		}
-
-		$query .= ' AND catid = '.$db->Quote($category_id).' ORDER BY ordering ASC';
-
-		$db->setQuery($query);
-		return $db->loadObjectList();
+		return $rows;
 	}
 
 	function getLinks($args)
@@ -118,8 +148,10 @@ class K2linksK2 extends JObject
 		$mainframe = JFactory::getApplication();
 
 		$advlink = WFEditorPlugin::getInstance();
-
-		require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
+		if (defined('K2_JVERSION'))
+		{
+			require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
+		}
 
 		$items = array();
 		$view = isset($args->view) ? $args->view : '';
@@ -131,11 +163,8 @@ class K2linksK2 extends JObject
 				$categories = self::_getK2Categories();
 				foreach ($categories as $category)
 				{
-					$items[] = array(
-						'id' => K2HelperRoute::getCategoryRoute($category->id.':'.$category->alias),
-						'name' => $category->name,
-						'class' => 'folder content'
-					);
+					$category->href = K2HelperRoute::getCategoryRoute($category->id.':'.$category->alias);
+					$items[] = array('id' => $category->href, 'name' => $category->name, 'class' => 'folder content');
 				}
 				break;
 
@@ -144,19 +173,13 @@ class K2linksK2 extends JObject
 				$itemlist = self::_getK2Items($args->id);
 				foreach ($categories as $category)
 				{
-					$items[] = array(
-						'id' => K2HelperRoute::getCategoryRoute($category->id.':'.$category->alias),
-						'name' => $category->name,
-						'class' => 'folder content'
-					);
+					$category->href = K2HelperRoute::getCategoryRoute($category->id.':'.$category->alias);
+					$items[] = array('id' => $category->href, 'name' => $category->name, 'class' => 'folder content');
 				}
 				foreach ($itemlist as $item)
 				{
-					$items[] = array(
-						'id' => K2HelperRoute::getItemRoute($item->id.':'.$item->alias, $args->id),
-						'name' => $item->title,
-						'class' => 'file'
-					);
+					$item->href = K2HelperRoute::getItemRoute($item->id.':'.$item->alias, $item->catid);
+					$items[] = array('id' => $item->href, 'name' => $item->title, 'class' => 'file');
 				}
 				break;
 

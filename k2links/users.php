@@ -69,36 +69,57 @@ class K2linksUsers extends JObject
 		return $list;
 	}
 
-	function _getK2Users()
+	public static function _getK2Users()
 	{
-		$db = JFactory::getDBO();
-		$query = "SELECT juser.id, juser.name FROM #__users as juser
-        RIGHT JOIN #__k2_users as k2user ON juser.id = k2user.userID";
-		$db->setQuery($query);
-		return $db->loadObjectList();
-	}
-
-	function _getK2Items($userID = '')
-	{
-		$db = JFactory::getDBO();
-		$query = "SELECT item.id, item.title, item.alias, item.catid, category.alias AS categoryAlias FROM #__k2_items AS item
-        LEFT JOIN #__k2_categories AS category ON item.catid = category.id
-        WHERE item.created_by = ".(int)$userID." AND item.created_by_alias = ''";
-		$query .= ' AND item.published = 1 AND category.published = 1 ';
-		$user = JFactory::getUser();
-		if (version_compare(JVERSION, '1.6.0', 'ge'))
+		if (defined('K2_JVERSION'))
 		{
-			$query .= ' AND item.access IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
-			$query .= ' AND category.access IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+			$db = JFactory::getDBO();
+			$query = "SELECT juser.id, juser.name FROM #__users as juser
+        RIGHT JOIN #__k2_users as k2user ON juser.id = k2user.userID";
+			$db->setQuery($query);
+			$rows = $db->loadObjectList();
 		}
 		else
 		{
-			$query .= " AND item.access <=".(int)$user->get('aid');
-			$query .= " AND category.access <=".(int)$user->get('aid');
+			$model = K2Model::getInstance('Users');
+			$rows = $model->getRows();
 		}
-		$query .= " ORDER BY title, created ASC";
-		$db->setQuery($query);
-		return $db->loadObjectList();
+		return $rows;
+	}
+
+	public static function _getK2Items($userID = '')
+	{
+		if (defined('K2_JVERSION'))
+		{
+			$db = JFactory::getDBO();
+			$query = "SELECT item.id, item.title, item.alias, item.catid, category.alias AS categoryAlias FROM #__k2_items AS item
+        LEFT JOIN #__k2_categories AS category ON item.catid = category.id
+        WHERE item.created_by = ".(int)$userID." AND item.created_by_alias = ''";
+			$query .= ' AND item.published = 1 AND category.published = 1 ';
+			$user = JFactory::getUser();
+			if (version_compare(JVERSION, '1.6.0', 'ge'))
+			{
+				$query .= ' AND item.access IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+				$query .= ' AND category.access IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+			}
+			else
+			{
+				$query .= " AND item.access <=".(int)$user->get('aid');
+				$query .= " AND category.access <=".(int)$user->get('aid');
+			}
+			$query .= " ORDER BY title, created ASC";
+			$db->setQuery($query);
+			$rows = $db->loadObjectList();
+		}
+		else
+		{
+			$model = K2Model::getInstance('Items');
+			$model->setState('site', true);
+			$model->setState('author', (int)$userID);
+			$model->setState('sorting', 'title');
+			$rows = $model->getRows();
+		}
+		return $rows;
 	}
 
 	function getLinks($args)
@@ -107,8 +128,11 @@ class K2linksUsers extends JObject
 
 		$advlink = WFEditorPlugin::getInstance();
 
-		require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'utilities.php');
-		require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
+		if (defined('K2_JVERSION'))
+		{
+			require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'utilities.php');
+			require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
+		}
 
 		$items = array();
 		$view = isset($args->view) ? $args->view : '';
@@ -122,11 +146,23 @@ class K2linksUsers extends JObject
 				{
 					if ($user->id)
 					{
-						$items[] = array(
-							'id' => K2HelperRoute::getUserRoute($user->id),
-							'name' => $user->name,
-							'class' => 'folder content'
-						);
+						if (defined('K2_JVERSION'))
+						{
+							$user->href = K2HelperRoute::getUserRoute($user->id);
+						}
+						else
+						{
+							if (JFactory::getConfig()->get('unicodeslugs') == 1)
+							{
+								$alias = JFilterOutput::stringURLUnicodeSlug($user->name);
+							}
+							else
+							{
+								$alias = JFilterOutput::stringURLSafe($user->name);
+							}
+							$user->href = K2HelperRoute::getUserRoute($user->id.':'.$alias);
+						}
+						$items[] = array('id' => $user->href, 'name' => $user->name, 'class' => 'folder content');
 					}
 				}
 				break;
@@ -135,11 +171,8 @@ class K2linksUsers extends JObject
 				$itemlist = self::_getK2Items($args->id);
 				foreach ($itemlist as $item)
 				{
-					$items[] = array(
-						'id' => K2HelperRoute::getItemRoute($item->id.':'.$item->alias, $item->catid.':'.$item->categoryAlias),
-						'name' => $item->title,
-						'class' => 'file'
-					);
+					$item->href = K2HelperRoute::getItemRoute($item->id.':'.$item->alias, $item->catid);
+					$items[] = array('id' => $item->href, 'name' => $item->title, 'class' => 'file');
 				}
 				break;
 

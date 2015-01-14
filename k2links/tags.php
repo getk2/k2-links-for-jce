@@ -69,41 +69,63 @@ class K2linksTags extends JObject
 		return $list;
 	}
 
-	function _getK2Tags()
+	public static function _getK2Tags()
 	{
-		$db = JFactory::getDBO();
-		$user = JFactory::getUser();
-
-		$query = 'SELECT id, name FROM #__k2_tags WHERE published = 1 ORDER BY name ASC';
-
-		$db->setQuery($query);
-		return $db->loadObjectList();
+		if (defined('K2_JVERSION'))
+		{
+			$db = JFactory::getDBO();
+			$user = JFactory::getUser();
+			$query = 'SELECT id, name FROM #__k2_tags WHERE published = 1 ORDER BY name ASC';
+			$db->setQuery($query);
+			$rows = $db->loadObjectList();
+		}
+		else
+		{
+			$model = K2Model::getInstance('Tags');
+			$model->setState('state', 1);
+			$model->setState('sorting', 'name');
+			$rows = $model->getRows();
+		}
+		return $rows;
 	}
 
-	function _getK2Items($tag = '')
+	public static function _getK2Items($tag = '')
 	{
-		$db = JFactory::getDBO();
-		$user = JFactory::getUser();
-		$query = "SELECT `i`.`id`, `i`.`title`, `i`.`alias`, `i`.`catid`, `c`.`alias` AS categoryAlias
+		if (defined('K2_JVERSION'))
+		{
+
+			$db = JFactory::getDBO();
+			$user = JFactory::getUser();
+			$query = "SELECT `i`.`id`, `i`.`title`, `i`.`alias`, `i`.`catid`, `c`.`alias` AS categoryAlias
         FROM `#__k2_tags_xref` as `x`
         INNER JOIN `#__k2_items` as `i` ON(`i`.`id` = `x`.`itemID`)
         INNER JOIN `#__k2_tags` as `t` ON (`t`.`id` = `x`.`tagID`)
         INNER JOIN `#__k2_categories` as `c` ON(`i`.`catid` = `c`.`id`)
         WHERE `t`.`name` = ".$db->quote($tag);
-		$query .= ' AND `i`.`published` = 1 AND `c`.`published` = 1 ';
-		if (version_compare(JVERSION, '1.6.0', 'ge'))
-		{
-			$query .= ' AND `i`.`access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
-			$query .= ' AND `c`.`access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+			$query .= ' AND `i`.`published` = 1 AND `c`.`published` = 1 ';
+			if (version_compare(JVERSION, '1.6.0', 'ge'))
+			{
+				$query .= ' AND `i`.`access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+				$query .= ' AND `c`.`access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+			}
+			else
+			{
+				$query .= "\nAND `i`.`access` <=".(int)$user->get('aid');
+				$query .= "\nAND `c`.`access` <=".(int)$user->get('aid');
+			}
+			$query .= "\nORDER BY `i`.`title`, `i`.`created` ASC";
+			$db->setQuery($query);
+			$rows = $db->loadObjectList();
 		}
 		else
 		{
-			$query .= "\nAND `i`.`access` <=".(int)$user->get('aid');
-			$query .= "\nAND `c`.`access` <=".(int)$user->get('aid');
+			$model = K2Model::getInstance('Items');
+			$model->setState('site', true);
+			$model->setState('tag', (int)$tag);
+			$model->setState('sorting', 'title');
+			$rows = $model->getRows();
 		}
-		$query .= "\nORDER BY `i`.`title`, `i`.`created` ASC";
-		$db->setQuery($query);
-		return $db->loadObjectList();
+		return $rows;
 	}
 
 	function getLinks($args)
@@ -112,8 +134,10 @@ class K2linksTags extends JObject
 
 		$advlink = WFEditorPlugin::getInstance();
 
-		require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
-
+		if (defined('K2_JVERSION'))
+		{
+			require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
+		}
 		$items = array();
 		$view = isset($args->view) ? $args->view : '';
 
@@ -124,11 +148,15 @@ class K2linksTags extends JObject
 				$tags = self::_getK2Tags();
 				foreach ($tags as $tag)
 				{
-					$items[] = array(
-						'id' => K2HelperRoute::getTagRoute($tag->name),
-						'name' => $tag->name,
-						'class' => 'folder content'
-					);
+					if (defined('K2_JVERSION'))
+					{
+						$tag->href = K2HelperRoute::getTagRoute($tag->name);
+					}
+					else
+					{
+						$tag->href = K2HelperRoute::getTagRoute($tag->id.':'.$tag->alias);
+					}
+					$items[] = array('id' => $tag->href, 'name' => $tag->name, 'class' => 'folder content');
 				}
 				break;
 
@@ -136,11 +164,8 @@ class K2linksTags extends JObject
 				$itemlist = self::_getK2Items($args->tag);
 				foreach ($itemlist as $item)
 				{
-					$items[] = array(
-						'id' => K2HelperRoute::getItemRoute($item->id.':'.$item->alias, $item->catid.':'.$item->categoryAlias),
-						'name' => $item->title,
-						'class' => 'file'
-					);
+					$item->href = K2HelperRoute::getItemRoute($item->id.':'.$item->alias, $item->catid);
+					$items[] = array('id' => $item->href, 'name' => $item->title, 'class' => 'file');
 				}
 				break;
 
