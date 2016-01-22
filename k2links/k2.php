@@ -163,7 +163,7 @@ class K2linksK2 extends JObject
 				$categories = self::_getK2Categories();
 				foreach ($categories as $category)
 				{
-					$category->href = K2HelperRoute::getCategoryRoute($category->id.':'.$category->alias);
+					$category->href = K2HelperRoute::getCategoryRoute($category->id);
 					$items[] = array('id' => $category->href, 'name' => $category->name, 'class' => 'folder content');
 				}
 				break;
@@ -173,7 +173,7 @@ class K2linksK2 extends JObject
 				$itemlist = self::_getK2Items($args->id);
 				foreach ($categories as $category)
 				{
-					$category->href = K2HelperRoute::getCategoryRoute($category->id.':'.$category->alias);
+					$category->href = K2HelperRoute::getCategoryRoute($category->id);
 					$items[] = array('id' => $category->href, 'name' => $category->name, 'class' => 'folder content');
 				}
 				foreach ($itemlist as $item)
