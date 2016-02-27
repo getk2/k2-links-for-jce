@@ -33,7 +33,7 @@ Some helpful links:
 - K2 - http://getk2.org
 - Joomla - http://www.joomla.org
 
-If you want to provide feedback for this JCE extension, you may use the GitHub issue tracker here: https://github.com/joomlaworks/K2-Links-for-JCE/issues
+If you want to provide feedback for this JCE extension, you may use the GitHub issue tracker here: https://github.com/getk2/k2-links-for-jce/issues
 
 
 ### TO DO
