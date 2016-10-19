@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<install version="2.0" type="extension" extension="k2links" folder="links" method="upgrade" core="0">
+<extension version="2.5" type="plugin" group="jce" method="upgrade">
 	<name>K2 Links for JCE</name>
 	<version>2.0.1</version>
 	<creationDate>June 5th, 2014</creationDate>
@@ -8,20 +8,12 @@
 	<authorUrl>www.joomlaworks.net</authorUrl>
 	<copyright>Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<description>K2 Links for JCE 2.0.1</description>
+	<description>K2 Links for JCE 2.6</description>
 	<files>
-		<filename>k2links.php</filename>
-		<filename>k2links/k2.php</filename>
-		<filename>k2links/tags.php</filename>
-		<filename>k2links/users.php</filename>
+		<filename>links-k2.php</filename>
+		<folder>k2</folder>
 	</files>
-	<params group="links">
-		<param name="k2links" type="list" default="1" label="WF_LABEL_EXTENSION_ENABLE" description="WF_LABEL_EXTENSION_ENABLE_DESC">
-			<option value="1">WF_OPTION_YES</option>
-			<option value="0">WF_OPTION_NO</option>
-		</param>
-	</params>
-	<params group="k2links">
+	<params group="k2">
 		<param name="k2" type="list" default="1" label="Category links" description="Allows you to browse K2 categories and add a link to them or their items">
 			<option value="1">WF_OPTION_YES</option>
 			<option value="0">WF_OPTION_NO</option>
@@ -31,5 +23,4 @@
 			<option value="0">WF_OPTION_NO</option>
 		</param>
 	</params>
-	<plugins></plugins>
-</install>
+</extension>
