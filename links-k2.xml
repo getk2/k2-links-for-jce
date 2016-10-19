@@ -10,7 +10,7 @@
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<description>K2 Links for JCE 2.6</description>
 	<files>
-		<filename>links-k2.php</filename>
+		<file plugin="links-k2">links-k2.php</file>
 		<folder>k2links</folder>
 	</files>
 	<params group="k2links">
