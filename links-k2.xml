@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <extension version="2.5" type="plugin" group="jce" method="upgrade">
-	<name>K2 Links for JCE</name>
-	<version>2.0.1</version>
-	<creationDate>June 5th, 2014</creationDate>
+	<name>plg_jce_links_k2</name>
+	<version>2.6.0</version>
+	<creationDate>October 2016</creationDate>
 	<author>JoomlaWorks</author>
 	<authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
 	<authorUrl>www.joomlaworks.net</authorUrl>
@@ -10,7 +10,7 @@
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<description>K2 Links for JCE 2.6</description>
 	<files>
-		<file plugin="links-k2">links-k2.php</filename>
+		<file plugin="links-k2">links-k2.php</file>
 		<folder>k2links</folder>
 	</files>
 	<params group="k2links">

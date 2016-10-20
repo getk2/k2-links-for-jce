@@ -7,9 +7,9 @@
  * @license     GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
-defined('_WF_EXT') or die('ERROR_403');
+defined('_WF_EXT') or die('RESTRICTED');
 
-class WFLinkBrowser_K2links extends JObject
+class WFLinkBrowser_K2 extends JObject
 {
 
 	var $_option = array();
@@ -20,7 +20,7 @@ class WFLinkBrowser_K2links extends JObject
 	 *
 	 * @access	protected
 	 */
-	function __construct($options = array())
+	public function __construct($options = array())
 	{
 		jimport('joomla.filesystem.folder');
 		jimport('joomla.filesystem.file');
@@ -51,29 +51,29 @@ class WFLinkBrowser_K2links extends JObject
 	 * @return	JCE  The editor object.
 	 * @since	1.5
 	 */
-	function getInstance()
+	public function getInstance()
 	{
 		static $instance;
 
 		if (!is_object($instance))
 		{
-			$instance = new WFLinkBrowser_K2links();
+			$instance = new WFLinkBrowser_K2();
 		}
 		return $instance;
 	}
 
-	function display()
+	public function display()
 	{
 
 	}
 
-	function isEnabled()
+	public function isEnabled()
 	{
 		$wf = WFEditorPlugin::getInstance();
 		return $wf->checkAccess($wf->getName().'.links.k2links', 1);
 	}
 
-	function getOption()
+	public function getOption()
 	{
 		foreach ($this->_adapters as $adapter)
 		{
@@ -82,7 +82,7 @@ class WFLinkBrowser_K2links extends JObject
 		return $this->_option;
 	}
 
-	function getList()
+	public function getList()
 	{
 		$list = '';
 
@@ -93,7 +93,7 @@ class WFLinkBrowser_K2links extends JObject
 		return $list;
 	}
 
-	function getLinks($args)
+	public function getLinks($args)
 	{
 		foreach ($this->_adapters as $adapter)
 		{

@@ -64,7 +64,7 @@ class K2linksK2 extends JObject
 		$list = '';
 		if ($advlink->checkAccess('k2links.k2', '1'))
 		{
-			$list = '<li id="index.php?option=com_k2&task=category"><div class="tree-row"><div class="tree-image"></div><span class="folder content nolink"><a href="javascript:;">'.JText::_('K2 Categories &amp; Items').'</a></span></div></li>';
+			$list = '<li id="index.php?option=com_k2&task=category"><div class="uk-tree-row"><a href="#"><span class="uk-tree-icon folder content nolink"></span><span class="uk-tree-text">'.JText::_('K2 Categories &amp; Items').'</span></a></div></li>';
 		}
 		return $list;
 	}
