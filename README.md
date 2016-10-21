@@ -22,6 +22,11 @@ This is a JCE extension and the only basic requirements to use it are:
 The latest version should work on all Joomla releases from version 2.5 to 3.x. Support for Joomla 1.5 is no longer available.
 
 
+### FAQ
+Q. The search field in the JCE link manager does not return any K2 content
+A. The search field uses the Joomla K2 Search plugin, the same one used to search the site in the front-end. This must be enabled in JCE Editor Profiles -> Plugin Parameters -> Link, in the Search section (scroll to the bottom of the page).
+
+
 ### LICENSE
 This is a Joomla! extension co-developed by JoomlaWorks Ltd. (makers of K2) & Widget Factory Ltd. (makers of JCE) and released under the GNU/GPL v2 license.
 
