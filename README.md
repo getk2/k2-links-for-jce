@@ -1,7 +1,7 @@
 K2 Links for JCE
 =========
 
-This JCE 2.x compatible extension allows you to quickly link your any part of your content to K2 categories, items, tags and users, directly from within the WYSIWYG editor window. Once installed, whenever you create a new link using JCE's link options, you'll see available link actions specifically for K2 content.
+This JCE 2.6.x compatible extension allows you to quickly link your any part of your content to K2 categories, items, tags and users, directly from within the WYSIWYG editor window. Once installed, whenever you create a new link using JCE's link options, you'll see available link actions specifically for K2 content.
 
 
 ### FEATURES
@@ -15,7 +15,7 @@ This is a backend extension so a public demo or showcase is currently not availa
 ### REQUIREMENTS
 This is a JCE extension and the only basic requirements to use it are:
 
-- JCE v2.x installed
+- JCE v2.6.x installed
 - K2 v2.5.x or newer installed
 - Joomla 1.5, 2.5 or 3.x installed (depends on which Joomla release is supported by JCE at the time)
 
@@ -43,4 +43,4 @@ If you want to provide feedback for this JCE extension, you may use the GitHub i
 ## DOWNLOAD
 You can grab the latest release here: http://goo.gl/IBwsOz (v2.0.1)
 
-To install this JCE extension, you MUST use the JCE extension installer and not the Joomla installer!
+Install using the Joomla installer!
