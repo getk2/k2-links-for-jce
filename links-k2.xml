@@ -23,4 +23,9 @@
 			<option value="0">WF_OPTION_NO</option>
 		</param>
 	</params>
+	
+	<languages folder="administrator/language/en-GB">
+        	<language tag="en-GB">en-GB.plg_jce_links-k2.ini</language>
+		<language tag="en-GB">en-GB.plg_jce_links-k2.sys.ini</language>
+    	</languages>
 </extension>
