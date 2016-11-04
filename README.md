@@ -42,7 +42,7 @@ You can grab the latest release here: https://github.com/getk2/k2-links-for-jce/
 
 Install using the Joomla installer!
 
-## OLDER VERSIONS
+### OLDER VERSIONS
 
 Version 2.0.1 for JCE 2.5.x is available here - https://github.com/getk2/k2-links-for-jce/archive/2.0.x.zip
 
