@@ -28,8 +28,8 @@ This is a Joomla! extension co-developed by JoomlaWorks Ltd. (makers of K2) & Wi
 ### ADDITIONAL INFO
 Some helpful links:
 
-- JCE - https://www.joomlacontenteditor.net/
-- K2 - https://getk2.org
+- JCE    - https://www.joomlacontenteditor.net/
+- K2     - https://getk2.org
 - Joomla - https://www.joomla.org
 
 If you want to provide feedback for this JCE extension, you may use the GitHub issue tracker here: https://github.com/getk2/k2-links-for-jce/issues
