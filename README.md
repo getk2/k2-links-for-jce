@@ -46,6 +46,8 @@ If you want to provide feedback for this JCE extension, you may use the GitHub i
 
 
 ## DOWNLOAD
-You can grab the latest release here: http://goo.gl/IBwsOz (v2.0.1)
+You can grab the latest release here: https://github.com/getk2/k2-links-for-jce/archive/master.zip (v2.6.0)
 
 Install using the Joomla installer!
+
+Version 2.0.1 for JCE 2.5.x is available here (install using the JCE Installer) - https://github.com/getk2/k2-links-for-jce/archive/2.0.x.zip
