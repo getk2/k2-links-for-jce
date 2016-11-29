@@ -9,7 +9,7 @@
 	<copyright>Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<description>K2 Links for JCE 2.6</description>
-	<files>
+	<files folder="plugins/jce/links-k2">
 		<file plugin="links-k2">links-k2.php</file>
 		<folder>k2links</folder>
 	</files>
