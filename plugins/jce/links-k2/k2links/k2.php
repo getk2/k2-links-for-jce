@@ -113,7 +113,7 @@ class K2linksK2 extends JObject
 		{
 			$db = JFactory::getDBO();
 
-			$query = 'SELECT id, title, alias FROM #__k2_items WHERE published = 1';
+			$query = 'SELECT id, title, alias, catid FROM #__k2_items WHERE published = 1';
 
 			$user = JFactory::getUser();
 			if (version_compare(JVERSION, '1.6.0', 'ge'))
