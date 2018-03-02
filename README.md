@@ -40,7 +40,9 @@ If you want to provide feedback for this JCE extension, you may use the GitHub i
 ## DOWNLOAD
 You can grab the latest release here: https://github.com/getk2/k2-links-for-jce/archive/master.zip (v2.6.0)
 
-**Install using the Joomla Installer!**
+## INSTALLATION
+
+Install using the Joomla Installer!
 
 ### OLDER VERSIONS
 
