@@ -27,4 +27,7 @@
         <language tag="en-GB">en-GB.plg_jce_links-k2.ini</language>
         <language tag="en-GB">en-GB.plg_jce_links-k2.sys.ini</language>
     </languages>
+	<updateservers>
+		<server type="extension" priority="1" name="K2 Links for JCE">https://cdn.rawgit.com/getk2/k2-links-for-jce/master/static/update.xml</server>
+	</updateservers>
 </extension>
