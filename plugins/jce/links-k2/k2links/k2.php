@@ -1,9 +1,9 @@
 <?php
 /**
- * @version     2.0.1
+ * @version     2.6.1
  * @package     K2 Links for JCE
  * @author      JoomlaWorks http://www.joomlaworks.net
- * @copyright   Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
+ * @copyright   Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
  * @license     GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -14,7 +14,6 @@ defined('_WF_EXT') or die('ERROR_403');
  */
 class K2linksK2 extends JObject
 {
-
     public $_option = 'com_k2';
     public $_task = 'category';
 
@@ -161,7 +160,7 @@ class K2linksK2 extends JObject
                 }
                 foreach ($itemlist as $item) {
                     $item->href = K2HelperRoute::getItemRoute($item->id . ':' . $item->alias, $item->catid);
-					$items[] = array('id' => $item->href, 'name' => $item->title, 'class' => 'file');
+                    $items[] = array('id' => $item->href, 'name' => $item->title, 'class' => 'file');
 
                     $anchors = self::getAnchors($item->content);
 
