@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     2.6.1
+ * @version     2.6.2
  * @package     K2 Links for JCE
  * @author      JoomlaWorks http://www.joomlaworks.net
  * @copyright   Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
