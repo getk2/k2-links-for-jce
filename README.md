@@ -10,11 +10,11 @@ A JCE plugin that allows linking to K2 content from the links panel in JCE.
 This is a backend extension so a public demo or showcase is currently not available.
 
 ### REQUIREMENTS
-This is a JCE extension and the only basic requirements to use it are:
+This is a JCE extension and the minimum requirements to use it are:
 
-- JCE v2.6.x
-- K2 v2.8.x
-- Joomla v3.x
+- JCE 2.6.x
+- K2 2.8.x
+- Joomla 3.x
 
 Support for Joomla 1.5 & 2.5 is no longer available.
 
@@ -39,6 +39,8 @@ If you want to provide feedback for this JCE extension, you may use the GitHub i
 
 ## DOWNLOAD
 You can grab the latest release here: https://github.com/getk2/k2-links-for-jce/archive/2.6.1.zip (v2.6.1)
+
+For JCE 2.5.x (legacy) and K2 2.6 - 2.7 / Joomla 1.5 - 3.x: https://github.com/getk2/k2-links-for-jce/archive/2.0.1.zip
 
 ## INSTALLATION (& UPGRADING)
 Install or upgrade using the Joomla Installer.
