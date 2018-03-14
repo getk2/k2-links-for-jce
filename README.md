@@ -35,6 +35,7 @@ Some helpful links:
 If you want to provide feedback for this JCE extension, you may use the GitHub issue tracker here: https://github.com/getk2/k2-links-for-jce/issues
 
 ### TO DO
+- Add support for the Joomla updater (so new releases are visible there automatically)
 - Add a language translation file
 
 ## DOWNLOAD
