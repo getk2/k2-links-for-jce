@@ -13,7 +13,7 @@ This is a backend extension so a public demo or showcase is currently not availa
 This is a JCE extension and the only basic requirements to use it are:
 
 - JCE v2.6.x
-- K2 v2.7.x or newer
+- K2 v2.8.x
 - Joomla v3.x
 
 Support for Joomla 1.5 & 2.5 is no longer available.

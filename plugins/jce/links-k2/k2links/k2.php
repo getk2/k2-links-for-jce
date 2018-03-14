@@ -102,17 +102,18 @@ class K2linksK2 extends JObject
         // K2 2.x
         if (defined('K2_JVERSION')) {
             $db = JFactory::getDBO();
-
-            $query = 'SELECT id, title, alias, CONCAT(' . $db->quoteName('introtext') . ',' . $db->quoteName('fulltext') . ') AS content FROM #__k2_items WHERE published = 1';
-
             $user = JFactory::getUser();
+
+            $query = '
+            SELECT id, title, alias, catid, CONCAT(' . $db->quoteName('introtext') . ',' . $db->quoteName('fulltext') . ') AS content FROM #__k2_items WHERE published = 1';
+
             if (version_compare(JVERSION, '1.6.0', 'ge')) {
                 $query .= ' AND `access` IN (' . implode(',', $user->getAuthorisedViewLevels()) . ')';
             } else {
                 $query .= "\nAND `access` <=" . (int) $user->get('aid');
             }
 
-            $query .= ' AND catid = ' . $db->Quote($category_id) . ' ORDER BY ordering ASC';
+            $query .= ' AND catid = ' . $db->Quote($category_id) . ' ORDER BY id DESC';
 
             $db->setQuery($query);
             $rows = $db->loadObjectList();
@@ -132,10 +133,11 @@ class K2linksK2 extends JObject
     public function getLinks($args)
     {
         $mainframe = JFactory::getApplication();
+        $db = JFactory::getDBO();
 
         $advlink = WFEditorPlugin::getInstance();
         if (defined('K2_JVERSION')) {
-            require_once JPATH_SITE . DS . 'components' . DS . 'com_k2' . DS . 'helpers' . DS . 'route.php';
+            require_once JPATH_SITE.'/components/com_k2/helpers/route.php';
         }
 
         $items = array();
@@ -159,11 +161,9 @@ class K2linksK2 extends JObject
                     $items[] = array('id' => $category->href, 'name' => $category->name, 'class' => 'folder content');
                 }
                 foreach ($itemlist as $item) {
-                    $item->href = K2HelperRoute::getItemRoute($item->id . ':' . $item->alias, $item->catid);
+                    $item->href = K2HelperRoute::getItemRoute($item->id.':'.urlencode($item->alias), $item->catid);
                     $items[] = array('id' => $item->href, 'name' => $item->title, 'class' => 'file');
-
                     $anchors = self::getAnchors($item->content);
-
                     foreach ($anchors as $anchor) {
                         $items[] = array(
                             'id' => $item->href . '#' . $anchor,

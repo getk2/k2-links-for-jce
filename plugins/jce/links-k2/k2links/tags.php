@@ -89,11 +89,11 @@ class K2linksTags extends JObject
             $db = JFactory::getDBO();
             $user = JFactory::getUser();
             $query = "SELECT `i`.`id`, `i`.`title`, `i`.`alias`, `i`.`catid`, `c`.`alias` AS categoryAlias
-        FROM `#__k2_tags_xref` as `x`
-        INNER JOIN `#__k2_items` as `i` ON(`i`.`id` = `x`.`itemID`)
-        INNER JOIN `#__k2_tags` as `t` ON (`t`.`id` = `x`.`tagID`)
-        INNER JOIN `#__k2_categories` as `c` ON(`i`.`catid` = `c`.`id`)
-        WHERE `t`.`name` = ".$db->quote($tag);
+		        FROM `#__k2_tags_xref` as `x`
+		        INNER JOIN `#__k2_items` as `i` ON(`i`.`id` = `x`.`itemID`)
+		        INNER JOIN `#__k2_tags` as `t` ON (`t`.`id` = `x`.`tagID`)
+		        INNER JOIN `#__k2_categories` as `c` ON(`i`.`catid` = `c`.`id`)
+		        WHERE `t`.`name` = ".$db->quote($tag);
             $query .= ' AND `i`.`published` = 1 AND `c`.`published` = 1 ';
             if (version_compare(JVERSION, '1.6.0', 'ge')) {
                 $query .= ' AND `i`.`access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
@@ -122,7 +122,7 @@ class K2linksTags extends JObject
         $advlink = WFEditorPlugin::getInstance();
 
         if (defined('K2_JVERSION')) {
-            require_once(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
+            require_once JPATH_SITE.'/components/com_k2/helpers/route.php';
         }
         $items = array();
         $view = isset($args->view) ? $args->view : '';

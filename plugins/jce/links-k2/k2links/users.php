@@ -117,8 +117,8 @@ class K2linksUsers extends JObject
         $advlink = WFEditorPlugin::getInstance();
 
         if (defined('K2_JVERSION')) {
-            require_once(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'utilities.php');
-            require_once(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
+            require_once JPATH_SITE.'/components/com_k2/helpers/utilities.php';
+            require_once JPATH_SITE.'/components/com_k2/helpers/route.php';
         }
 
         $items = array();
