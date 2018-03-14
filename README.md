@@ -38,12 +38,7 @@ If you want to provide feedback for this JCE extension, you may use the GitHub i
 - Add a language translation file
 
 ## DOWNLOAD
-You can grab the latest release here: https://github.com/getk2/k2-links-for-jce/archive/master.zip (v2.6.1)
+You can grab the latest release here: https://github.com/getk2/k2-links-for-jce/archive/2.6.1.zip (v2.6.1)
 
 ## INSTALLATION (& UPGRADING)
 Install or upgrade using the Joomla Installer.
-
-### OLDER VERSIONS
-Version 2.0.1 for JCE 2.5.x is available here - https://github.com/getk2/k2-links-for-jce/archive/2.0.x.zip
-
-**(Install using the JCE Installer!)**
