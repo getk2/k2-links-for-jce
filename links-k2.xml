@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <extension version="2.5" type="plugin" group="jce" method="upgrade">
-    <name>plg_jce_links_k2</name>
+    <name>PLG_JCE_LINKS_K2</name>
     <version>2.6.1</version>
     <creationDate>March 14th, 2018</creationDate>
     <author>JoomlaWorks</author>
@@ -8,23 +8,21 @@
     <authorUrl>www.joomlaworks.net</authorUrl>
     <copyright>Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-    <description>K2 Links for JCE 2.6</description>
+    <description>PLG_JCE_LINKS_K2_XML_DESC</description>
     <files folder="plugins/jce/links-k2">
         <file plugin="links-k2">links-k2.php</file>
         <folder>k2links</folder>
     </files>
-    <!--
     <params group="k2links">
-        <param name="k2" type="list" default="1" label="Category links" description="Allows you to browse K2 categories and add a link to them or their items">
+        <param name="k2" type="radio" default="1" label="PLG_JCE_LINKS_XML_CAT_LINKS" description="PLG_JCE_LINKS_XML_CAT_LINKS_DESC">
             <option value="1">WF_OPTION_YES</option>
             <option value="0">WF_OPTION_NO</option>
         </param>
-        <param name="tags" type="list" default="1" label="Tag links" description="Allows you to browse K2 tags and add a link to them or their items">
+        <param name="tags" type="radio" default="1" label="PLG_JCE_LINKS_XML_TAG_LINKS" description="PLG_JCE_LINKS_XML_TAG_LINKS_DESC">
             <option value="1">WF_OPTION_YES</option>
             <option value="0">WF_OPTION_NO</option>
         </param>
     </params>
-    -->
     <languages folder="administrator/language/en-GB">
         <language tag="en-GB">en-GB.plg_jce_links-k2.ini</language>
         <language tag="en-GB">en-GB.plg_jce_links-k2.sys.ini</language>

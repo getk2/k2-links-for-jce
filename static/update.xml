@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+	<update>
+		<name>K2 Links for JCE</name>
+		<description>This JCE 2.6.x compatible extension allows you to quickly link any part of your content to K2 items, categories, tags and users, directly from within the WYSIWYG editor window. Once installed, whenever you create a new link using JCE's link options, you'll see available link actions specifically for K2 content.</description>
+		<element>links-k2</element>
+		<type>plugin</type>
+		<folder>jce</folder>
+		<version>2.6.1</version>
+		<infourl title="K2 Links for JCE Release Notes">https://github.com/getk2/k2-links-for-jce</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/getk2/k2-links-for-jce/archive/2.6.1.zip</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer>JoomlaWorks Ltd.</maintainer>
+		<maintainerurl>https://www.joomlaworks.net/</maintainerurl>
+		<section>Updates</section>
+		<targetplatform name="joomla" version="3.[0123456789]" />
+		<client>0</client>
+	</update>
+</updates>

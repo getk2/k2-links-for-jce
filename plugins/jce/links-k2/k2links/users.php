@@ -46,7 +46,7 @@ class K2linksUsers extends JObject
         $advlink = WFEditorPlugin::getInstance();
         $list = '';
         if ($advlink->checkAccess('k2links.users', '1')) {
-            $list = '<li id="index.php?option=com_k2&task=user"><div class="uk-tree-row"><a href="#"><span class="uk-tree-icon folder content nolink"></span><span class="uk-tree-text">'.JText::_('K2 Users').'</span></a></div></li>';
+            $list = '<li id="index.php?option=com_k2&task=user"><div class="uk-tree-row"><a href="#"><span class="uk-tree-icon folder content nolink"></span><span class="uk-tree-text">'.JText::_('PLG_JCE_LINKS_K2_USERS').'</span></a></div></li>';
         }
         return $list;
     }

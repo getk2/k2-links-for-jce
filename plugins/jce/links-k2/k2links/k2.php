@@ -46,7 +46,7 @@ class K2linksK2 extends JObject
         $advlink = WFEditorPlugin::getInstance();
         $list = '';
         if ($advlink->checkAccess('k2links.k2', '1')) {
-            $list = '<li id="index.php?option=com_k2&task=category"><div class="uk-tree-row"><a href="#"><span class="uk-tree-icon folder content nolink"></span><span class="uk-tree-text">' . JText::_('K2 Categories &amp; Items') . '</span></a></div></li>';
+            $list = '<li id="index.php?option=com_k2&task=category"><div class="uk-tree-row"><a href="#"><span class="uk-tree-icon folder content nolink"></span><span class="uk-tree-text">' . JText::_('PLG_JCE_LINKS_K2_CATEGORIES_AND_ITEMS') . '</span></a></div></li>';
         }
         return $list;
     }

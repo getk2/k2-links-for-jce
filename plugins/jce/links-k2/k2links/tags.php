@@ -46,7 +46,7 @@ class K2linksTags extends JObject
         $advlink = WFEditorPlugin::getInstance();
         $list = '';
         if ($advlink->checkAccess('k2links.tags', '1')) {
-            $list = '<li id="index.php?option=com_k2&task=tag"><div class="uk-tree-row"><a href="#"><span class="uk-tree-icon folder content nolink"></span><span class="uk-tree-text">'.JText::_('K2 Tags').'</span></a></div></li>';
+            $list = '<li id="index.php?option=com_k2&task=tag"><div class="uk-tree-row"><a href="#"><span class="uk-tree-icon folder content nolink"></span><span class="uk-tree-text">'.JText::_('PLG_JCE_LINKS_K2_TAGS').'</span></a></div></li>';
         }
         return $list;
     }
