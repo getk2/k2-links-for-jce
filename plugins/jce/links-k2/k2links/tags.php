@@ -17,25 +17,10 @@ class K2linksTags extends JObject
     public $_option = 'com_k2';
     public $_task = 'tag';
 
-    /**
-     * Constructor activating the default information of the class
-     *
-     * @access	protected
-     */
     public function __construct($options = array())
     {
     }
 
-    /**
-     * Returns a reference to a editor object
-     *
-     * This method must be invoked as:
-     * 		<pre>  $browser =JContentEditor::getInstance();</pre>
-     *
-     * @access	public
-     * @return	JCE  The editor object.
-     * @since	1.5
-     */
     public function getInstance()
     {
         static $instance;

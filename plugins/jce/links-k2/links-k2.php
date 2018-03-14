@@ -14,11 +14,6 @@ class WFLinkBrowser_K2 extends JObject
     public $_option = array();
     public $_adapters = array();
 
-    /**
-     * Constructor activating the default information of the class
-     *
-     * @access	protected
-     */
     public function __construct($options = array())
     {
         jimport('joomla.filesystem.folder');
@@ -38,16 +33,6 @@ class WFLinkBrowser_K2 extends JObject
         }
     }
 
-    /**
-     * Returns a reference to a editor object
-     *
-     * This method must be invoked as:
-     * 		<pre>  $browser =JContentEditor::getInstance();</pre>
-     *
-     * @access	public
-     * @return	JCE  The editor object.
-     * @since	1.5
-     */
     public function getInstance()
     {
         static $instance;
