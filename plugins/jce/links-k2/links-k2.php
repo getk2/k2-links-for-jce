@@ -19,14 +19,14 @@ class WFLinkBrowser_K2 extends JObject
         jimport('joomla.filesystem.folder');
         jimport('joomla.filesystem.file');
 
-        $path = dirname(__FILE__).DS.'k2links';
+        $path = dirname(__FILE__).'/k2links';
 
         // Get all files
         $files = JFolder::files($path, '\.(php)$');
 
         if (!empty($files)) {
             foreach ($files as $file) {
-                require_once($path.DS.$file);
+                require_once($path.'/'.$file);
                 $classname = 'K2links'.ucfirst(basename($file, '.php'));
                 $this->_adapters[] = new $classname;
             }
