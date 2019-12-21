@@ -13,6 +13,7 @@ If you want to provide feedback for this JCE extension, you may use the GitHub i
 ### FAQ
 
 Q. The search field in the JCE link manager does not return any K2 content
+
 A. The search field uses the Joomla "K2 Search" plugin, the same one used to search the site in the front-end. This must be enabled in JCE Editor Profiles -> Plugin Parameters -> Link (tab), in the "Search" section (scroll to the bottom of the page).
 
 
