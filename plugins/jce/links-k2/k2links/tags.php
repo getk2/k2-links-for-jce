@@ -2,9 +2,9 @@
 /**
  * @version     2.6.2
  * @package     K2 Links for JCE
- * @author      JoomlaWorks http://www.joomlaworks.net
- * @copyright   Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license     GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author      JoomlaWorks https://www.joomlaworks.net
+ * @copyright   Copyright (c) 2006 - 2019 JoomlaWorks Ltd. All rights reserved.
+ * @license     GNU/GPL license: https://www.gnu.org/licenses/gpl.html
  */
 
 defined('_WF_EXT') or die('ERROR_403');
@@ -74,12 +74,13 @@ class K2linksTags extends JObject
             $db = JFactory::getDBO();
             $user = JFactory::getUser();
             $query = "SELECT `i`.`id`, `i`.`title`, `i`.`alias`, `i`.`catid`, `c`.`alias` AS categoryAlias
-		        FROM `#__k2_tags_xref` as `x`
-		        INNER JOIN `#__k2_items` as `i` ON(`i`.`id` = `x`.`itemID`)
-		        INNER JOIN `#__k2_tags` as `t` ON (`t`.`id` = `x`.`tagID`)
-		        INNER JOIN `#__k2_categories` as `c` ON(`i`.`catid` = `c`.`id`)
-		        WHERE `t`.`name` = ".$db->quote($tag);
-            $query .= ' AND `i`.`published` = 1 AND `c`.`published` = 1 ';
+                FROM `#__k2_tags_xref` AS `x`
+                INNER JOIN `#__k2_items` AS `i` ON(`i`.`id` = `x`.`itemID`)
+                INNER JOIN `#__k2_tags` AS `t` ON (`t`.`id` = `x`.`tagID`)
+                INNER JOIN `#__k2_categories` AS `c` ON(`i`.`catid` = `c`.`id`)
+                WHERE `t`.`name` = ".$db->quote($tag)."
+                    AND `i`.`published` = 1
+                    AND `c`.`published` = 1";
             if (version_compare(JVERSION, '1.6.0', 'ge')) {
                 $query .= ' AND `i`.`access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
                 $query .= ' AND `c`.`access` IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
@@ -102,7 +103,7 @@ class K2linksTags extends JObject
 
     public function getLinks($args)
     {
-        $mainframe = JFactory::getApplication();
+        $app = JFactory::getApplication();
 
         $advlink = WFEditorPlugin::getInstance();
 

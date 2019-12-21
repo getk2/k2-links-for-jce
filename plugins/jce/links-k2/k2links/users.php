@@ -2,9 +2,9 @@
 /**
  * @version     2.6.2
  * @package     K2 Links for JCE
- * @author      JoomlaWorks http://www.joomlaworks.net
- * @copyright   Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license     GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author      JoomlaWorks https://www.joomlaworks.net
+ * @copyright   Copyright (c) 2006 - 2019 JoomlaWorks Ltd. All rights reserved.
+ * @license     GNU/GPL license: https://www.gnu.org/licenses/gpl.html
  */
 
 defined('_WF_EXT') or die('ERROR_403');
@@ -69,12 +69,15 @@ class K2linksUsers extends JObject
     public static function _getK2Items($userID = '')
     {
         if (defined('K2_JVERSION')) {
-            $db = JFactory::getDBO();
-            $query = "SELECT item.id, item.title, item.alias, item.catid, category.alias AS categoryAlias FROM #__k2_items AS item
-        LEFT JOIN #__k2_categories AS category ON item.catid = category.id
-        WHERE item.created_by = ".(int)$userID." AND item.created_by_alias = ''";
-            $query .= ' AND item.published = 1 AND category.published = 1 ';
             $user = JFactory::getUser();
+            $db = JFactory::getDBO();
+            $query = "SELECT item.id, item.title, item.alias, item.catid, category.alias AS categoryAlias
+                FROM #__k2_items AS item
+                LEFT JOIN #__k2_categories AS category ON item.catid = category.id
+                WHERE item.created_by = ".(int)$userID."
+                    AND item.created_by_alias = ''
+                    AND item.published = 1
+                    AND category.published = 1";
             if (version_compare(JVERSION, '1.6.0', 'ge')) {
                 $query .= ' AND item.access IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
                 $query .= ' AND category.access IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
@@ -97,7 +100,7 @@ class K2linksUsers extends JObject
 
     public function getLinks($args)
     {
-        $mainframe = JFactory::getApplication();
+        $app = JFactory::getApplication();
 
         $advlink = WFEditorPlugin::getInstance();
 

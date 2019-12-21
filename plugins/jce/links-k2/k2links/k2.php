@@ -2,9 +2,9 @@
 /**
  * @version     2.6.2
  * @package     K2 Links for JCE
- * @author      JoomlaWorks http://www.joomlaworks.net
- * @copyright   Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license     GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author      JoomlaWorks https://www.joomlaworks.net
+ * @copyright   Copyright (c) 2006 - 2019 JoomlaWorks Ltd. All rights reserved.
+ * @license     GNU/GPL license: https://www.gnu.org/licenses/gpl.html
  */
 
 defined('_WF_EXT') or die('ERROR_403');
@@ -117,7 +117,7 @@ class K2linksK2 extends JObject
 
     public function getLinks($args)
     {
-        $mainframe = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $db = JFactory::getDBO();
 
         $advlink = WFEditorPlugin::getInstance();

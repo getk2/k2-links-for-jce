@@ -2,12 +2,12 @@
 <extension version="2.5" type="plugin" group="jce" method="upgrade">
     <name>PLG_JCE_LINKS_K2</name>
     <version>2.6.2</version>
-    <creationDate>March 14th, 2018</creationDate>
+    <creationDate>December 21st, 2019</creationDate>
     <author>JoomlaWorks</author>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
-    <copyright>Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.</copyright>
-    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <copyright>Copyright (c) 2006 - 2019 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <license>https://www.gnu.org/licenses/gpl.html</license>
     <description>PLG_JCE_LINKS_K2_XML_DESC</description>
     <files folder="plugins/jce/links-k2">
         <file plugin="links-k2">links-k2.php</file>
@@ -28,6 +28,6 @@
         <language tag="en-GB">en-GB.plg_jce_links-k2.sys.ini</language>
     </languages>
 	<updateservers>
-		<server type="extension" priority="1" name="K2 Links for JCE">https://cdn.rawgit.com/getk2/k2-links-for-jce/master/static/update.xml</server>
+		<server type="extension" priority="1" name="K2 Links for JCE">https://cdn.jsdelivr.net/gh/getk2/k2-links-for-jce@master/static/update.xml</server>
 	</updateservers>
 </extension>
